@@ -11,10 +11,10 @@
 class HumanHTTPHelper
 {
     const METHOD_POST = "POST";
-    
+
     const CHARSET_ISO_8859_1 = "ISO-8859-1";
     const CHARSET_UTF_8 = "UTF-8";
-    
+
     public static function formatRequest(
         $host, $uri, $contentType, $params = array(), $method = self::METHOD_POST, $charset = self::CHARSET_ISO_8859_1)
     {
@@ -25,8 +25,8 @@ class HumanHTTPHelper
             }
             $postdata .= $key . "=" . $value;
         }
-        
-        $output  = $method . " " . $uri . " HTTP/1.0\r\n";
+
+        $output  = $method . " " . $uri . " HTTP/1.1\r\n";
         $output .= "Host: " . $host . "\r\n";
         $output .= "User-Agent: PHP Script\r\n";
         $output .= "Content-Type: " . $contentType . "; ";
@@ -34,7 +34,7 @@ class HumanHTTPHelper
         $output .= "Content-Length: " . strlen($postdata) . "\r\n";
         $output .= "Connection: close\r\n\r\n";
         $output .= $postdata;
-        
+
         return $output;
     }
 }
